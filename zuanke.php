@@ -1,5 +1,5 @@
 <?php
 require 'vendor/autoload.php';
 $client = new \GuzzleHttp\Client();
-$res = $client->request('GET', 'http://www.zuanke8.com/zuixin.php');
+$res = $client->request('GET', 'www.baidu.com');
 echo $res->getBody();
