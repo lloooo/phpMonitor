@@ -2,7 +2,6 @@
 require 'vendor/autoload.php';
 use Sunra\PhpSimple\HtmlDomParser;
 
-//zuanke8阿里云上dns解析有误, 导致无法连接到主机, 需设置hosts: 36.248.216.30    www.zuanke8.com
 class Monitor
 {
     private $url;
@@ -25,7 +24,7 @@ class Monitor
     {
         $data    = $this->crawl();
         $dom     = HtmlDomParser::str_get_html($data);
-        $element = $dom->find('table', 6)->innertext();
+        $element = $dom->find('table', 5)->innertext();
         $subDom  = HtmlDomParser::str_get_html($element);
         $themes  = $subDom->find('tr');
         foreach ($themes as $theme) {
