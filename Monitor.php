@@ -22,16 +22,22 @@ class Monitor
 
     public function listen()
     {
-        $data    = $this->crawl();
-        $dom     = HtmlDomParser::str_get_html($data);
-        $element = $dom->find('table', 5)->innertext();
+        $data       = $this->crawl();
+        $dom        = HtmlDomParser::str_get_html($data);
+        $elementObj = $dom->find('table', 5);
+        if (is_null($elementObj)) {
+            echo 'get null , relisten';
+
+            return;
+        }
+        $element = $elementObj->innertext();
         $subDom  = HtmlDomParser::str_get_html($element);
         $themes  = $subDom->find('tr');
         foreach ($themes as $theme) {
             if (preg_match('/(速度|水)/', $theme)) {
                 preg_match('/http:\/\/www\.zuanke8\.com\/thread.*html/', $theme, $url);
                 preg_match('/e=.*ta/', $theme, $title);
-                echo rtrim(ltrim($title[0],'e="'),'"  ta') . PHP_EOL . $url[0] . PHP_EOL;
+                echo rtrim(ltrim($title[0], 'e="'), '"  ta') . PHP_EOL . $url[0] . PHP_EOL;
             }
         }
     }
