@@ -34,7 +34,7 @@ class Monitor
         $subDom  = HtmlDomParser::str_get_html($element);
         $themes  = $subDom->find('tr');
         foreach ($themes as $theme) {
-            if (preg_match('/(速度|水)/', $theme)) {
+            if (preg_match('/(速度|水|快)/', $theme)) {
                 preg_match('/http:\/\/www\.zuanke8\.com\/thread.*html/', $theme, $url);
                 preg_match('/e=.*ta/', $theme, $title);
                 echo rtrim(ltrim($title[0], 'e="'), '"  ta') . PHP_EOL . $url[0] . PHP_EOL;
