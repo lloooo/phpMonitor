@@ -22,9 +22,19 @@ class Monitor
 
     public function listen()
     {
-        $data       = $this->crawl();
-        $dom        = HtmlDomParser::str_get_html($data);
-        $elementObj = $dom->find('table', 5);
+        $data = $this->crawl();
+        $dom  = HtmlDomParser::str_get_html($data);
+//        $this->parseTable($dom,5);
+        $this->parseTable($dom,6);
+    }
+
+    /**
+     * @param $dom \simplehtmldom_1_5\simple_html_dom
+     * @param $tableIndex
+     */
+    private function parseTable($dom, $tableIndex)
+    {
+        $elementObj = $dom->find('table', $tableIndex);
         if (is_null($elementObj)) {
             echo 'get null , relisten';
 
